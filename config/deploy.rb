@@ -1,8 +1,8 @@
 # config valid only for current version of Capistrano
 lock '3.7.0'
 
-set :application, 'dentist-data'
-set :repo_url, 'git@github.com:DennisdeBest/dentist-data.git'
+set :application, 'devapi.dentist-data'
+set :repo_url, 'git@github.com:DennisdeBest/DentistDataAPI.git'
 
 # To make safe to deplyo to same server
 set :tmp_dir, "/tmp/devapi-dentist-data"
