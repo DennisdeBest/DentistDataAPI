@@ -109,12 +109,16 @@ fos_oauth_server:
 
 nelmio_api_doc: ~
 
+sensio_framework_extra:
+    view:
+        annotations: true
+
 fos_rest:
     param_fetcher_listener: true
     body_listener: true
     format_listener: true
     view:
-        view_response_listener: 'force'
+        view_response_listener: true
     routing_loader:
         default_format: json
     access_denied_listener:

@@ -1,37 +1,39 @@
 security:
+    encoders:
+        vp\GlobalBundle\Entity\User:
+            algorithm:            pbkdf2
+            hash_algorithm:       sha512
+            encode_as_base64:     true
+            iterations:           1000
+
     role_hierarchy:
         ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
-    encoders:
-        FOS\UserBundle\Model\UserInterface: bcrypt
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
 
-    # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
-        fos_userbundle:
-            id: fos_user.user_provider.username
-
-    access_denied_url: /login
+        user_provider:
+            id: vp_global_user_provider
 
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
+        oauth_token:
+            pattern:    ^/oauth/v2/token
+            security:   false
 
-        main:
-            pattern : ^/
+        oauth_authorize:
+            pattern:    ^/oauth/v2/auth
             form_login:
-                provider: fos_userbundle
-                csrf_token_generator: security.csrf.token_manager
-            logout: true
+                provider: user_provider
+                check_path: vp_global_login_check
+                login_path: vp_global_login
             anonymous: true
-            # activate different ways to authenticate
+            context: connect
 
-            # http_basic: ~
-            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
-
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+        api:
+            pattern:    ^/
+            fos_oauth:  true
+            stateless:  true
+            anonymous:  true # Needed to allow access to oauth pages
 
     access_control:
-           - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/oauth/v2/, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: IS_AUTHENTICATED_FULLY }
