@@ -6,8 +6,6 @@
     <title>{%  block title %}Dev Dentist-Data{% endblock %}</title>
     {% block stylesheets %}
         {% stylesheets filter='cssrewrite'
-        'bundles/app/css/main.css'
-        'bundles/app/css/bootstrap.css'
         %}
         <link rel="stylesheet" href="{{ asset_url }}" type="text/css" />
         <link href='https://fonts.googleapis.com/css?family=Raleway|Ubuntu|Copse' rel='stylesheet' type='text/css'>
@@ -21,7 +19,6 @@
                 crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
         {% javascripts
-        'bundles/app/js/main.js'
         output='js/compiled/app.js' %}
         <script src="{{ asset_url }}"></script>
         {% endjavascripts %}
