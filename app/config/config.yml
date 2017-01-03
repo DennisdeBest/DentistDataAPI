@@ -8,7 +8,6 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
-    appbundle.showcase_images: /uploads/showcase
 
 framework:
     #esi:             ~
@@ -80,34 +79,16 @@ assetic:
     filters:
         cssrewrite: ~
 
-vich_uploader:
-    db_driver: orm
-    mappings:
-        showcase_images:
-            uri_prefix: %appbundle.showcase_images%
-            upload_destination: %kernel.root_dir%/../web/uploads/showcase
-
-ivory_ck_editor:
-    configs:
-        base_config:
-            toolbar: full
-
 jms_i18n_routing:
     default_locale: en
     locales: [en, fr, nl]
     strategy: prefix_except_default
 
-fos_oauth_server:
-    db_driver: orm
-    client_class:        ApiBundle\Entity\Client
-    access_token_class:  test\ApiBundle\Entity\AccessToken
-    refresh_token_class: test\ApiBundle\Entity\RefreshToken
-    auth_code_class:     test\ApiBundle\Entity\AuthCode
-    service:
-        options:
-            supported_scopes: read
-
-nelmio_api_doc: ~
+lexik_jwt_authentication:
+    private_key_path: '%jwt_private_key_path%'
+    public_key_path:  '%jwt_public_key_path%'
+    pass_phrase:      '%jwt_key_pass_phrase%'
+    token_ttl:        '%jwt_token_ttl%'
 
 fos_rest:
     param_fetcher_listener: true

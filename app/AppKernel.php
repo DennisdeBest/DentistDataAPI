@@ -19,15 +19,12 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new JavierEguiluz\Bundle\EasyAdminBundle\EasyAdminBundle(),
-            new \Vich\UploaderBundle\VichUploaderBundle(),
-            new \Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new \JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
             new \JMS\TranslationBundle\JMSTranslationBundle(),
  	        new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new \FOS\RestBundle\FOSRestBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
-            new \FOS\OAuthServerBundle\FOSOAuthServerBundle(),
-            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
+            new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
