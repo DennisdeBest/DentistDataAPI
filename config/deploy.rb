@@ -8,7 +8,7 @@ set :repo_url, 'git@github.com:DennisdeBest/dentist-data.git'
 set :tmp_dir, "/tmp/devapi-dentist-data"
 set :symfony_console_path, "bin/console"
 
-set :deploy_to, '/var/www/dev.dentist-data.fr'
+set :deploy_to, '/var/www/devapi.dentist-data.fr'
 
 # Symfony application path
 set :app_path,"app"
