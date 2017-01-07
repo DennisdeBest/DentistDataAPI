@@ -6,3 +6,8 @@ register:
     path: /register
     methods: [POST]
     defaults: { _controller: AppBundle:Registration:register}
+
+register:
+    path: /login
+    methods: [POST]
+    defaults: { _controller: AppBundle:Login:login}
