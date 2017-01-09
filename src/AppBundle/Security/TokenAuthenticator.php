@@ -43,7 +43,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
         }
         $username = $data['username'];
         return $this->em
-            ->getRepository('UserBundle:User')
+            ->getRepository('AppBundle:User')
             ->findOneBy(['username' => $username]);
     }
     public function checkCredentials($credentials, UserInterface $user)

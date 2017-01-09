@@ -10,5 +10,5 @@ login:
 
 forms:
     path: /forms
-    methods: [POST]
-    defaults: { _controller: AppBundle:Form}
+    methods: [GET]
+    defaults: { _controller: AppBundle:Form:form}
