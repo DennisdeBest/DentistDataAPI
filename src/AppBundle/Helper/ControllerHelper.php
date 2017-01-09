@@ -2,6 +2,7 @@
 namespace AppBundle\Helper;
 
 use Symfony\Component\HttpFoundation\Response;
+use JMS\Serializer\SerializationContext;
 
 trait ControllerHelper
 {

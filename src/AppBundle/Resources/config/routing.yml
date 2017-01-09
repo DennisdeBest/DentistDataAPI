@@ -1,13 +1,14 @@
-homepage:
-    path:     /
-    defaults: { _controller: AppBundle:Default:index }
-
 register:
     path: /register
     methods: [POST]
     defaults: { _controller: AppBundle:Registration:register}
 
-register:
+login:
     path: /login
     methods: [POST]
     defaults: { _controller: AppBundle:Login:login}
+
+forms:
+    path: /forms
+    methods: [POST]
+    defaults: { _controller: AppBundle:Form}

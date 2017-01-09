@@ -14,17 +14,13 @@ class LoginController extends Controller
 {
     use \AppBundle\Helper\ControllerHelper;
 
-    /**
-     * @Route("/login", name="user_login")
-     * @Method("POST")
-     */
     public function loginAction(Request $request)
     {
         $userName = $request->getUser();
         $password = $request->getPassword();
 
         $user = $this->getDoctrine()
-            ->getRepository('UserBundle:User')
+            ->getRepository('AppBundle:User')
             ->findOneBy(['username' => $userName]);
 
         if (!$user) {
@@ -38,8 +34,39 @@ class LoginController extends Controller
             throw new BadCredentialsException();
         }
 
-        $response = new Response(Response::HTTP_OK);
+        $token = $this->getToken($user);
+        $response = new Response($this->serialize(['token' => $token]), Response::HTTP_OK);
 
         return $this->setBaseHeaders($response);
+    }
+
+    /**
+     * Returns token for user.
+     *
+     * @param User $user
+     *
+     * @return array
+     */
+    public function getToken(User $user)
+    {
+        return $this->container->get('lexik_jwt_authentication.encoder')
+            ->encode([
+                'username' => $user->getUsername(),
+                'exp' => $this->getTokenExpiryDateTime(),
+            ]);
+    }
+
+    /**
+     * Returns token expiration datetime.
+     *
+     * @return string Unixtmestamp
+     */
+    private function getTokenExpiryDateTime()
+    {
+        $tokenTtl = $this->container->getParameter('lexik_jwt_authentication.token_ttl');
+        $now = new \DateTime();
+        $now->add(new \DateInterval('PT'.$tokenTtl.'S'));
+
+        return $now->format('U');
     }
 }
