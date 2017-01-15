@@ -121,6 +121,6 @@ nelmio_cors:
     paths:
         '^/api/':
             allow_origin: ['*']
-            allow_headers: ['*']
+            allow_headers: ['application/json', 'PHP_AUTH_PW', 'PHP_AUTH_USER']
             allow_methods: ['POST', 'PUT', 'GET', 'DELETE']
             max_age: 3600
