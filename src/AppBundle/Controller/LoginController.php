@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\User;
+use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 
 class LoginController extends Controller
 {
@@ -24,7 +25,7 @@ class LoginController extends Controller
             ->findOneBy(['username' => $userName]);
 
         if (!$user) {
-            throw $this->createNotFoundException();
+            throw new BadCredentialsException();
         }
 
         $isValid = $this->get('security.password_encoder')
