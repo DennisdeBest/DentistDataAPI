@@ -32,8 +32,8 @@ fetch(:default_env).merge!(PATH: '$PATH:/opt/php-7.0.1/bin/php')
 
 # Default value for :linked_files is []
 set :linked_files, fetch(:linked_files, []).push('app/config/parameters.yml')
-set :linked_files, fetch(:linked_files, []).push('var/jwt/private.pem.yml')
-set :linked_files, fetch(:linked_files, []).push('var/jwt/public.pem.yml')
+set :linked_files, fetch(:linked_files, []).push('app/config/jwt/private.pem')
+set :linked_files, fetch(:linked_files, []).push('app/config/jwt/public.pem')
 #set :linked_files, %w(app/config/parameters.yml project/app/config/parameters.yml)
 # Default value for linked_dirs is []
 set :linked_dirs, fetch(:linked_dirs, []).push('var')
