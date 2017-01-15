@@ -52,6 +52,6 @@
 
 #Capistrano logs
 log/
-/var/jwt/
-/var/jwt/private.pem
-/var/jwt/public.pem
+/app/config/jwt/
+/app/config/jwt/private.pem
+/app/config/jwt/public.pem
