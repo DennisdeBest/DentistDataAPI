@@ -23,6 +23,11 @@ user_demote:
     methods: [POST]
     defaults: { _controller: AppBundle:ApiUser:demote}
 
+getUsers:
+    path: /getUsers
+    methods: [GET]
+    defaults: { _controller: AppBundle:Authentication:getUsers}
+
 forms:
     path: /forms
     methods: [GET]
