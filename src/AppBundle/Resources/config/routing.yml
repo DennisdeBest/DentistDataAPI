@@ -8,6 +8,11 @@ login:
     methods: [POST]
     defaults: { _controller: AppBundle:Login:login}
 
+auth:
+    path: /auth
+    methods: [POST]
+    defaults: { _controller: AppBundle:Authentication:Authenticate}
+
 forms:
     path: /forms
     methods: [GET]

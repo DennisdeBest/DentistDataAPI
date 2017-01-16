@@ -53,6 +53,7 @@ class LoginController extends Controller
         return $this->container->get('lexik_jwt_authentication.encoder')
             ->encode([
                 'username' => $user->getUsername(),
+                'roles' => $user->getRoles(),
                 'exp' => $this->getTokenExpiryDateTime(),
             ]);
     }
