@@ -1,25 +1,51 @@
 <?php
 namespace AppBundle\Controller;
 
-use AppBundle\Security\TokenAuthenticator;
 use FOS\UserBundle\Controller\RegistrationController as BaseController;
+use Lexik\Bundle\JWTAuthenticationBundle\Exception\ExpiredTokenException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use FOS\UserBundle\Event\GetResponseUserEvent;
-use FOS\UserBundle\Event\FormEvent;
-use FOS\UserBundle\FOSUserEvents;
-use Symfony\Component\Form\FormInterface;
-use JMS\Serializer\SerializationContext;
+
 
 class ApiUserController extends BaseController
 {
     use \AppBundle\Helper\ControllerHelper;
 
     public function promoteAction(Request $request){
+        $authenticator = $this->get('token_authenticator');
+        $userProvider = $this->get('fos_user.user_manager');
 
+        $token = $authenticator->getCredentials($request);
+        if ($token) {
+            try {
+                $data = $authenticator->getUser($token, $userProvider);
+            } catch (ExpiredTokenException $e) {
+                $response = new Response($this->serialize("Token expired"), Response::HTTP_FORBIDDEN);
+                return $this->setBaseHeaders($response);
+            }
+        } else {
+            $response = new Response($this->serialize("Missing token"), Response::HTTP_FORBIDDEN);
+            return $this->setBaseHeaders($response);
+        }
+        if (!$data) {
+            $response = new Response($this->serialize("Bad credentials"), Response::HTTP_FORBIDDEN);
+        } else {
+            if($data->hasRole("ROLE_ADMIN")){
+                $id = $request->get("userID");
+                $em = $this->getDoctrine()->getEntityManager();
+                $userToPromote = $em->getRepository('AppBundle:User')
+                    ->find($id);
+                $userToPromote->setRole("ROLE_USER");
+                $em->flush();
+
+                $response = new Response($this->serialize("User promoted"), Response::HTTP_OK);
+            }
+            else {
+                $response = new Response($this->serialize("Missing token"), Response::HTTP_FORBIDDEN);
+            }
+
+        }
+        return $this->setBaseHeaders($response);
     }
 
     public function demoteAction(Request $request){

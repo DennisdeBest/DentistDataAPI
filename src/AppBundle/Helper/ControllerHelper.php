@@ -36,4 +36,6 @@ trait ControllerHelper
         return $this->get('jms_serializer')
             ->serialize($data, 'json', $context);
     }
+
+
 }
