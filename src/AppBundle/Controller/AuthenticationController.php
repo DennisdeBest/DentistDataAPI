@@ -52,7 +52,7 @@ class AuthenticationController extends BaseController
             try {
                 $user = $authenticator->getUser($token, $userProvider);
                 if ($user->hasRole("ROLE_ADMIN")) {
-                    $users = $this->userProvider->findUsers();
+                    $users = $userProvider->findUsers();
                     $response = new Response($this->serialize($users), Response::HTTP_OK);
                 } else {
                     $response = new Response($this->serialize("You do not have admin rights"), Response::HTTP_FORBIDDEN);
@@ -63,7 +63,10 @@ class AuthenticationController extends BaseController
                 $response = new Response($this->serialize("Token expired"), Response::HTTP_FORBIDDEN);
                 return $this->setBaseHeaders($response);
             }
+        } else {
+            $response = new Response($this->serialize("Missing token"), Response::HTTP_FORBIDDEN);
         }
+        return $this->setBaseHeaders($response);
     }
 
 }
