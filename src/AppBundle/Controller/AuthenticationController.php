@@ -3,6 +3,8 @@ namespace AppBundle\Controller;
 
 use AppBundle\Security\TokenAuthenticator;
 use FOS\UserBundle\Controller\RegistrationController as BaseController;
+use FOS\UserBundle\FOSUserBundle;
+use FOS\UserBundle\Model\User;
 use Lexik\Bundle\JWTAuthenticationBundle\Exception\ExpiredTokenException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,7 +54,8 @@ class AuthenticationController extends BaseController
             try {
                 $user = $authenticator->getUser($token, $userProvider);
                 if ($user->hasRole("ROLE_ADMIN")) {
-                    $users = $userProvider->findUsers();
+                    $repo = $this->getDoctrine()->getRepository('AppBundle:User');
+                    $users = $repo->findAll();
                     $response = new Response($this->serialize($users), Response::HTTP_OK);
                 } else {
                     $response = new Response($this->serialize("You do not have admin rights"), Response::HTTP_FORBIDDEN);
