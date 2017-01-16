@@ -13,6 +13,11 @@ auth:
     methods: [POST]
     defaults: { _controller: AppBundle:Authentication:Authenticate}
 
+getUsers:
+    path: /getUsers
+    methods: [GET]
+    defaults: { _controller: AppBundle:Authentication:getUsers}
+
 forms:
     path: /forms
     methods: [GET]

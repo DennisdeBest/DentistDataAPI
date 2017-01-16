@@ -22,11 +22,12 @@ class AuthenticationController extends BaseController
     public function authenticateAction(Request $request)
     {
         $authenticator = $this->get('token_authenticator');
+        $userProvider = $this->get('fos_user.user_manager');
         $token = $authenticator->getCredentials($request);
-        if($token){
-            try{
-                $data = $authenticator->getUser($token, $this->get('fos_user.user_manager'));
-            } catch (ExpiredTokenException $e){
+        if ($token) {
+            try {
+                $data = $authenticator->getUser($token, $userProvider);
+            } catch (ExpiredTokenException $e) {
                 $response = new Response($this->serialize("Token expired"), Response::HTTP_FORBIDDEN);
                 return $this->setBaseHeaders($response);
             }
@@ -34,12 +35,35 @@ class AuthenticationController extends BaseController
             $response = new Response($this->serialize("Missing token"), Response::HTTP_FORBIDDEN);
             return $this->setBaseHeaders($response);
         }
-        if(!$data){
+        if (!$data) {
             $response = new Response($this->serialize("Bad credentials"), Response::HTTP_FORBIDDEN);
-        }else {
+        } else {
             $response = new Response($this->serialize([$data]), Response::HTTP_OK);
         }
         return $this->setBaseHeaders($response);
+    }
+
+    public function getUsersAction(Request $request)
+    {
+        $authenticator = $this->get('token_authenticator');
+        $userProvider = $this->get('fos_user.user_manager');
+        $token = $authenticator->getCredentials($request);
+        if ($token) {
+            try {
+                $user = $authenticator->getUser($token, $userProvider);
+                if ($user->hasRole("ROLE_ADMIN")) {
+                    $users = $this->userProvider->findUsers();
+                    $response = new Response($this->serialize($users), Response::HTTP_OK);
+                } else {
+                    $response = new Response($this->serialize("You do not have admin rights"), Response::HTTP_FORBIDDEN);
+                }
+                return $this->setBaseHeaders($response);
+
+            } catch (ExpiredTokenException $e) {
+                $response = new Response($this->serialize("Token expired"), Response::HTTP_FORBIDDEN);
+                return $this->setBaseHeaders($response);
+            }
+        }
     }
 
 }
