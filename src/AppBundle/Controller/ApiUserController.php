@@ -35,6 +35,9 @@ class ApiUserController extends BaseController
                 $em = $this->getDoctrine()->getEntityManager();
                 $userToPromote = $em->getRepository('AppBundle:User')
                     ->find($id);
+                $logger = $this->get('logger');
+                $logger->info("User");
+                $logger->info($userToPromote);
                 $userToPromote->addRole("ROLE_USER");
                 $userProvider->updateUser($userToPromote, false);
                 $em->flush();
