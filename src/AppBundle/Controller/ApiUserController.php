@@ -31,7 +31,7 @@ class ApiUserController extends BaseController
             $response = new Response($this->serialize("Bad credentials"), Response::HTTP_FORBIDDEN);
         } else {
             if($data->hasRole("ROLE_ADMIN")){
-                $id = $request->get("userToPromote")['userId'];
+                $id = $request->get("userId");
                 $em = $this->getDoctrine()->getEntityManager();
                 $userToPromote = $em->getRepository('AppBundle:User')
                     ->find($id);
