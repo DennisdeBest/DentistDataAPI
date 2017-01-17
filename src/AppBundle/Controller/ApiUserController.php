@@ -5,7 +5,7 @@ use FOS\UserBundle\Controller\RegistrationController as BaseController;
 use Lexik\Bundle\JWTAuthenticationBundle\Exception\ExpiredTokenException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
+use Monolog\Logger;
 
 class ApiUserController extends BaseController
 {
@@ -35,7 +35,7 @@ class ApiUserController extends BaseController
                 $em = $this->getDoctrine()->getEntityManager();
                 $userToPromote = $em->getRepository('AppBundle:User')
                     ->find($id);
-                $logger = $this->get('logger');
+                $logger = new Logger();
                 $logger->info("User");
                 $logger->info($userToPromote);
                 $userToPromote->addRole("ROLE_USER");
