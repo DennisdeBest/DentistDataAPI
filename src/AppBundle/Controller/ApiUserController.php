@@ -40,6 +40,7 @@ class ApiUserController extends BaseController
                 $logger->info($userToPromote);
                 $userToPromote->addRole("ROLE_USER");
                 $userProvider->updateUser($userToPromote, false);
+                $em->persist($userToPromote);
                 $em->flush();
 
                 $response = new Response($this->serialize("User promoted"), Response::HTTP_OK);
