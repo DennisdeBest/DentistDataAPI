@@ -38,7 +38,7 @@ class ApiUserController extends BaseController
                 $logger = new Logger();
                 $logger->info("User");
                 $logger->info($userToPromote);
-                $userToPromote->addRole("ROLE_USER");
+                $userToPromote->addRole("ROLE_CUSTOMER");
                 $userProvider->updateUser($userToPromote, false);
                 $em->persist($userToPromote);
                 $em->flush();
