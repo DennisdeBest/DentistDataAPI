@@ -13,7 +13,8 @@ class AuthenticationController extends BaseController
 
     public function authenticateAction(Request $request)
     {
-        $response = new Response($this->serialize([$request]), Response::HTTP_OK);
+        $user = $this->getUser();
+        $response = new Response($this->serialize([$user]), Response::HTTP_OK);
         return $this->setBaseHeaders($response);
     }
 
