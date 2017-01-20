@@ -32,7 +32,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
         );
         $token = $extractor->extract($request);
         if (!$token) {
-            return;
+            return new Response('no credentials', Response::HTTP_BAD_GATEWAY);
         }
         return $token;
     }
