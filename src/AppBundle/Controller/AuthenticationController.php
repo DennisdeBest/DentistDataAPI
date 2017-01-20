@@ -5,6 +5,7 @@ use FOS\UserBundle\Controller\RegistrationController as BaseController;
 use Lexik\Bundle\JWTAuthenticationBundle\Exception\ExpiredTokenException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class AuthenticationController extends BaseController
 {
