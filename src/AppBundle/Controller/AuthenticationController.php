@@ -11,14 +11,16 @@ class AuthenticationController extends BaseController
 {
     use \AppBundle\Helper\ControllerHelper;
 
+
     public function authenticateAction(Request $request)
     {
+
         $user = $this->getUser();
         $logger = $this->get('logger');
         $logger->info("Custom Auth logger");
         $logger->info($request);
         $logger->info($user);
-        $response = new Response($this->serialize([$user]), Response::HTTP_OK);
+        $response = new Response($this->serialize(["KEK"]), Response::HTTP_OK);
         return $this->setBaseHeaders($response);
     }
 
