@@ -36,12 +36,12 @@ class AuthenticationController extends BaseController
     }
 
     /**
+     * @Security("has_role('ROLE_ADMIN')")
      * @param Request $request
      * @return Response
      */
     public function getUsersAction(Request $request)
     {
-
         $repo = $this->getDoctrine()->getRepository('AppBundle:User');
         $users = $repo->findAll();
         $response = new Response($this->serialize($users), Response::HTTP_OK);
