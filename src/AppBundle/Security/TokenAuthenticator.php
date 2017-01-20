@@ -30,7 +30,6 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
             'Authorization'
         );
         $token = $extractor->extract($request);
-        return new Response($token, Response::HTTP_UNAUTHORIZED);
         if (!$token) {
             return;
         }
