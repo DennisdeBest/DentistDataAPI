@@ -13,7 +13,7 @@ security:
 
     firewalls:
         main:
-            pattern: ^/
+            pattern: ^/api/
             anonymous: true
             stateless: true
 
@@ -23,7 +23,3 @@ security:
             guard:
                 authenticators:
                   - 'token_authenticator'
-
-    access_control:
-            - { path: ^/api/getUsers, roles: ROLE_ADMIN }
-            - { path: ^/admin, roles: ROLE_ADMIN }
