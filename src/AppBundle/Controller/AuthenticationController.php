@@ -15,6 +15,8 @@ class AuthenticationController extends BaseController
     {
         $user = $this->getUser();
         $logger = $this->get('logger');
+        $logger->info("Custom Auth logger");
+        $logger->info($request);
         $logger->info($user);
         $response = new Response($this->serialize([$user]), Response::HTTP_OK);
         return $this->setBaseHeaders($response);
