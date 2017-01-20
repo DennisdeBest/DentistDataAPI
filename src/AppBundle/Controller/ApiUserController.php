@@ -18,7 +18,7 @@ class ApiUserController extends BaseController
         $em = $this->getDoctrine()->getEntityManager();
         $userToPromote = $em->getRepository('AppBundle:User')
             ->find($id);
-        $logger = new Logger();
+        $logger = new Logger('dev');
         $logger->info("User");
         $logger->info($userToPromote);
         $userToPromote->addRole("ROLE_CUSTOMER");
@@ -27,7 +27,7 @@ class ApiUserController extends BaseController
         $em->flush();
 
         $response = new Response($this->serialize("User promoted"), Response::HTTP_OK);
- 
+
         return $this->setBaseHeaders($response);
     }
 
