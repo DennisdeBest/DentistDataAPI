@@ -32,12 +32,13 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
         );
         $token = $extractor->extract($request);
         if (!$token) {
-            return new Response('no credentials', Response::HTTP_BAD_GATEWAY);
+            return new Response('no credentials', '403');
         }
         return $token;
     }
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
+        return new Response('getUsers', '403');
         try {
             $data = $this->jwtEncoder->decode($credentials);
         } catch (JWTDecodeFailureException $e) {
