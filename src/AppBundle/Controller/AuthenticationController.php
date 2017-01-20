@@ -13,25 +13,7 @@ class AuthenticationController extends BaseController
 
     public function authenticateAction(Request $request)
     {
-        $authenticator = $this->get('token_authenticator');
-        $userProvider = $this->get('fos_user.user_manager');
-        $token = $authenticator->getCredentials($request);
-        if ($token) {
-            try {
-                $data = $authenticator->getUser($token, $userProvider);
-            } catch (ExpiredTokenException $e) {
-                $response = new Response($this->serialize("Token expired"), Response::HTTP_FORBIDDEN);
-                return $this->setBaseHeaders($response);
-            }
-        } else {
-            $response = new Response($this->serialize("Missing token"), Response::HTTP_FORBIDDEN);
-            return $this->setBaseHeaders($response);
-        }
-        if (!$data) {
-            $response = new Response($this->serialize("Bad credentials"), Response::HTTP_FORBIDDEN);
-        } else {
-            $response = new Response($this->serialize([$data]), Response::HTTP_OK);
-        }
+        $response = new Response($this->serialize([$this->getUser()]), Response::HTTP_OK);
         return $this->setBaseHeaders($response);
     }
 
