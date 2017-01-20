@@ -13,15 +13,17 @@ class ApiUserController extends BaseController
 
     public function promoteAction(Request $request)
     {
+        $logger = new Logger('');
         $userProvider = $this->get('fos_user.user_manager');
         $id = $request->get("userId");
-        $em = $this->getDoctrine()->getEntityManager();
+        $logger->addInfo($id)
+        $em = $this->getDoctrine()->getManager();
         $userToPromote = $em->getRepository('AppBundle:User')
             ->find($id);
-        $logger = new Logger('dev');
-        $logger->info("User");
-        $logger->info($userToPromote);
-        $userToPromote->addRole("ROLE_CUSTOMER");
+
+        $logger->addInfo("User");
+        $logger->addInfo($userToPromote);
+        $userToPromote->addRole('ROLE_CUSTOMER');
         $userProvider->updateUser($userToPromote, false);
         $em->persist($userToPromote);
         $em->flush();
