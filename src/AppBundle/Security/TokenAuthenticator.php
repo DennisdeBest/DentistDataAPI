@@ -38,16 +38,16 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
     }
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
-        return new Response('getUsers', '403');
+        //return new Response('getUsers', '403');
         try {
             $data = $this->jwtEncoder->decode($credentials);
         } catch (JWTDecodeFailureException $e) {
             throw new CustomUserMessageAuthenticationException('Invalid Token');
         }
         $username = $data['username'];
-        return $this->em
-            ->getRepository('AppBundle:User')
-            ->findOneBy(['username' => $username]);
+        //return
+        $user = $this->em->getRepository('AppBundle:User')->findOneBy(['username' => $username]);
+        return new Response($user);
     }
     public function checkCredentials($credentials, UserInterface $user)
     {
