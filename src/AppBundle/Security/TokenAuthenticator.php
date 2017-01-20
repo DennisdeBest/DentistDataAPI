@@ -31,9 +31,8 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
             'Authorization'
         );
         $token = $extractor->extract($request);
-        return new Response($request->headers->get('Authorization'), '403');
         if (!$token) {
-            return new Response('no credentials', '403');
+            return;
         }
         return $token;
     }

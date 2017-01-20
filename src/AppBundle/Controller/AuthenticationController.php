@@ -13,7 +13,7 @@ class AuthenticationController extends BaseController
 
 
     /**
-     * @Security("is_granted('ROLE_USER')")
+     *
      * @param Request $request
      * @return Response
      */
@@ -21,6 +21,7 @@ class AuthenticationController extends BaseController
     {
         $logger = $this->get('logger');
         $logger->info("Custom Auth logger");
+        $logger->info($request->headers);
         if($user = $this->getUser()){
             $logger->info("User found");
             $logger->info($user);
