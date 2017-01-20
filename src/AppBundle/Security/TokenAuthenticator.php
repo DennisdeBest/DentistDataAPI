@@ -38,6 +38,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
     public function getUser($credentials, UserProviderInterface $userProvider)
     {
         $data = $this->jwtEncoder->decode($credentials);
+        return new Response($data, Response::HTTP_UNAUTHORIZED);
         if ($data === false) {
             throw new CustomUserMessageAuthenticationException('Invalid Token');
         }
