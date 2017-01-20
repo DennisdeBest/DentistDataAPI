@@ -19,19 +19,13 @@ class AuthenticationController extends BaseController
      */
     public function authenticateAction(Request $request)
     {
-        $logger = $this->get('logger');
-        $logger->info("Custom Auth logger");
-        $logger->info($request->headers);
-        if($user = $this->getUser()){
-            $logger->info("User found");
-            $logger->info($user);
-        }
+        $user = $this->getUser();
         $response = new Response($this->serialize([$user]), Response::HTTP_OK);
         return $this->setBaseHeaders($response);
     }
 
     /**
-     * @Security("is_granted('ROLE_USER')")
+     * @Security("has_role('ROLE_ADMIN')")
      * @param Request $request
      * @return Response
      */

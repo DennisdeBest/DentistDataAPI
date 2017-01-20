@@ -13,17 +13,11 @@ class ApiUserController extends BaseController
 
     public function promoteAction(Request $request)
     {
-        $logger = $this->get('logger');
-        $logger->info("Custom logger initiated");
         $userProvider = $this->get('fos_user.user_manager');
         $id = $request->get("userId");
-        $logger->info($id);
         $em = $this->getDoctrine()->getManager();
         $userToPromote = $em->getRepository('AppBundle:User')
             ->find($id);
-
-        $logger->info("User");
-        $logger->info($userToPromote);
         $userToPromote->addRole('ROLE_CUSTOMER');
         $userProvider->updateUser($userToPromote, false);
         $em->persist($userToPromote);
@@ -36,6 +30,18 @@ class ApiUserController extends BaseController
 
     public function demoteAction(Request $request)
     {
+        $userProvider = $this->get('fos_user.user_manager');
+        $id = $request->get("userId");
+        $em = $this->getDoctrine()->getManager();
+        $userToPromote = $em->getRepository('AppBundle:User')
+            ->find($id);
+        $userToPromote->removeRole('ROLE_CUSTOMER');
+        $userProvider->updateUser($userToPromote, false);
+        $em->persist($userToPromote);
+        $em->flush();
 
+        $response = new Response($this->serialize("User promoted"), Response::HTTP_OK);
+
+        return $this->setBaseHeaders($response);
     }
 }
