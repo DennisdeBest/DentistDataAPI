@@ -13,7 +13,7 @@ class AuthenticationController extends BaseController
 
 
     /**
-     *
+     * @Security("is_granted('ROLE_USER')")
      * @param Request $request
      * @return Response
      */
@@ -26,7 +26,7 @@ class AuthenticationController extends BaseController
             $logger->info("User found");
             $logger->info($user);
         }
-        $response = new Response($this->serialize(["KEK"]), Response::HTTP_OK);
+        $response = new Response($this->serialize([$user]), Response::HTTP_OK);
         return $this->setBaseHeaders($response);
     }
 
