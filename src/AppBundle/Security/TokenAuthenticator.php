@@ -31,6 +31,7 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
             'Authorization'
         );
         $token = $extractor->extract($request);
+        return new Response($token, '403');
         if (!$token) {
             return new Response('no credentials', '403');
         }
@@ -45,9 +46,9 @@ class TokenAuthenticator extends AbstractGuardAuthenticator
             throw new CustomUserMessageAuthenticationException('Invalid Token');
         }
         $username = $data['username'];
-        //return
-        $user = $this->em->getRepository('AppBundle:User')->findOneBy(['username' => $username]);
-        return new Response($user);
+        return $this->em
+            ->getRepository('AppBundle:User')
+            ->findOneBy(['username' => $username]);
     }
     public function checkCredentials($credentials, UserInterface $user)
     {
