@@ -16,7 +16,7 @@ class ApiUserController extends BaseController
         $logger = new Logger('');
         $userProvider = $this->get('fos_user.user_manager');
         $id = $request->get("userId");
-        $logger->addInfo($id)
+        $logger->addInfo($id);
         $em = $this->getDoctrine()->getManager();
         $userToPromote = $em->getRepository('AppBundle:User')
             ->find($id);
