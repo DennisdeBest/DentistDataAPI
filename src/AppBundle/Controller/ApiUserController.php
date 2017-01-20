@@ -40,7 +40,7 @@ class ApiUserController extends BaseController
         $em->persist($userToPromote);
         $em->flush();
 
-        $response = new Response($this->serialize("User promoted"), Response::HTTP_OK);
+        $response = new Response($this->serialize("User demoted"), Response::HTTP_OK);
 
         return $this->setBaseHeaders($response);
     }
