@@ -60,6 +60,8 @@ class ApiUserController extends BaseController
         $logger->info("Save form logger");
         $logger->info($request);
         $data = $request->get('data');
+        $logger->info("Save form content");
+        $logger->info($request->getContent());
         $numbers = [];
         foreach ($data as $item) {
             if (preg_match_all('/\d+/', $item, $matches)) {
