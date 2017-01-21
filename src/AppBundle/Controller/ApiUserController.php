@@ -65,9 +65,11 @@ class ApiUserController extends BaseController
         $logger->info("Save form content");
         $logger->info($request->getContent());
         $logger->info("Deserialize");
-        $logger->info($this->deserialize($request->getContent(), Form0::class));
+        //$logger->info($this->deserialize($request->getContent(), Form0::class));
+        $data = ($request->getContent());
         $numbers = [];
         foreach ($data as $item) {
+            $logger->info($item);
             if (preg_match_all('/\d+/', $item, $matches)) {
                 $number = $matches[0][0];
                 if(!in_array($number, $numbers)){
