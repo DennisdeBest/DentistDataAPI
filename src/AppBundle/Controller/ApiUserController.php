@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Form0;
 use FOS\UserBundle\Controller\RegistrationController as BaseController;
 use JMS\Serializer\Serializer;
 use Lexik\Bundle\JWTAuthenticationBundle\Exception\ExpiredTokenException;
@@ -64,7 +65,7 @@ class ApiUserController extends BaseController
         $logger->info("Save form content");
         $logger->info($request->getContent());
         $logger->info("Deserialize");
-        $logger->info($this->deserialize($request->getContent()));
+        $logger->info($this->deserialize($request->getContent(), Form0::class));
         $numbers = [];
         foreach ($data as $item) {
             if (preg_match_all('/\d+/', $item, $matches)) {

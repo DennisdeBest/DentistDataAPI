@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Helper;
 
+use JMS\Serializer\DeserializationContext;
 use Symfony\Component\HttpFoundation\Response;
 use JMS\Serializer\SerializationContext;
 
@@ -41,17 +42,14 @@ trait ControllerHelper
     /**
      * Data deserializing via JMS serializer.
      *
-     * @param mixed $data
-     *
-     * @return string JSON string
      */
-    public function deserialize($data)
+    public function deserialize($data, $type)
     {
-        $context = new SerializationContext();
+        $context = new DeserializationContext();
         $context->setSerializeNull(true);
 
         return $this->get('jms_serializer')
-            ->deserialize($data, 'json', $context);
+            ->deserialize($data, $type,'json', $context);
     }
 
 
