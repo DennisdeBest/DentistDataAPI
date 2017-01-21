@@ -2,6 +2,7 @@
 namespace AppBundle\Controller;
 
 use FOS\UserBundle\Controller\RegistrationController as BaseController;
+use JMS\Serializer\Serializer;
 use Lexik\Bundle\JWTAuthenticationBundle\Exception\ExpiredTokenException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -62,6 +63,8 @@ class ApiUserController extends BaseController
         $data = $request->get('data');
         $logger->info("Save form content");
         $logger->info($request->getContent());
+        $logger->info("Deserialize");
+        $logger->info($this->deserialize($request->getContent()));
         $numbers = [];
         foreach ($data as $item) {
             if (preg_match_all('/\d+/', $item, $matches)) {

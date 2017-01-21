@@ -38,4 +38,21 @@ trait ControllerHelper
     }
 
 
+    /**
+     * Data deserializing via JMS serializer.
+     *
+     * @param mixed $data
+     *
+     * @return string JSON string
+     */
+    public function deserialize($data)
+    {
+        $context = new SerializationContext();
+        $context->setSerializeNull(true);
+
+        return $this->get('jms_serializer')
+            ->deserialize($data, 'json', $context);
+    }
+
+
 }
