@@ -58,7 +58,7 @@ class ApiUserController extends BaseController
     {
         $logger = $this->get('logger');
         $logger->info("Save form logger");
-        $logger->info($request->get('data'));
+        $logger->info($request);
         $data = $request->get('data');
         $numbers = [];
         foreach ($data as $item) {
