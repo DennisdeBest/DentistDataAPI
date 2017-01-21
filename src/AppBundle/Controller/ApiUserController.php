@@ -11,6 +11,11 @@ class ApiUserController extends BaseController
 {
     use \AppBundle\Helper\ControllerHelper;
 
+    /**
+     * @param Request
+     * $request
+     * @return Response
+     */
     public function promoteAction(Request $request)
     {
         $userProvider = $this->get('fos_user.user_manager');
@@ -43,5 +48,28 @@ class ApiUserController extends BaseController
         $response = new Response($this->serialize("User demoted"), Response::HTTP_OK);
 
         return $this->setBaseHeaders($response);
+    }
+
+    public function getClientsAction(Request $request){
+
+    }
+
+    public function saveFormAction(Request $request)
+    {
+        $logger = $this->get('logger');
+        $logger->info("Save form logger");
+        $logger->info($request->get('data'));
+        $data = $request->get('data');
+        $numbers = [];
+        foreach ($data as $item) {
+            if (preg_match_all('/\d+/', $item, $matches)) {
+                $number = $matches[0][0];
+                if(!in_array($number, $numbers)){
+                    $numbers[]= $number;
+                    $entity = "Form".$number;
+                    $entityObjects = new $entity();
+                }
+            }
+        }
     }
 }

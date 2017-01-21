@@ -29,6 +29,6 @@ getUsers:
     defaults: { _controller: AppBundle:Authentication:getUsers}
 
 forms:
-    path: /forms
-    methods: [GET]
-    defaults: { _controller: AppBundle:Form:form}
+    path: /form
+    methods: [POST]
+    defaults: { _controller: AppBundle:ApiUser:saveForm}
