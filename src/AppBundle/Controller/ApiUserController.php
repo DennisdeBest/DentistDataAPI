@@ -81,6 +81,9 @@ class ApiUserController extends BaseController
 
     }
 
+    /**
+     * @Security("is_granted('ROLE_USER')")
+     */
     public function saveFormAction(Request $request)
     {
         $logger = $this->get('logger');
