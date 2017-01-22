@@ -98,6 +98,10 @@ class ApiUserController extends BaseController
         $numbers = [];
 
         $allForms = new AllForms();
+
+        $user = $this->getUser();
+        $logger->info("USER BITE");
+        $logger->info($user);
         $allForms->setUser($this->getUser());
         //$logger->info($allForms->getUser());
         foreach ($data as $key=>$value) {
@@ -205,9 +209,5 @@ class ApiUserController extends BaseController
                 }
             }
         }
-    }
-
-    public function jsonToArray($json){
-
     }
 }
