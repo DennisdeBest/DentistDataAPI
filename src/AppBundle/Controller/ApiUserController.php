@@ -99,7 +99,7 @@ class ApiUserController extends BaseController
 
         $allForms = new AllForms();
         $allForms->setUser($this->getUser()->id);
-        $logger->info($allForms);
+        $logger->info($allForms->getUser());
         foreach ($data as $key=>$value) {
             $logger->info($value);
             if (preg_match_all('/\d+/', $key, $matches)) {
