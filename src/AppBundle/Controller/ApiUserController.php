@@ -124,6 +124,10 @@ class ApiUserController extends BaseController
                     }
                     $form1 = new Form1();
                 }
+                if($newNumber == $number){
+                    $logger->info($number." ".$key." ".$value);
+                    //$entity->get.$key->$value;
+                }
             }
         }
     }
