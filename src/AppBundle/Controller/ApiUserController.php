@@ -67,6 +67,7 @@ class ApiUserController extends BaseController
         $logger->info("Deserialize");
         //$logger->info($this->deserialize($request->getContent(), Form0::class));
         $data = ($request->getContent());
+        return new Response($data, '409');
         $numbers = [];
         foreach ($data as $item) {
             $logger->info($item);

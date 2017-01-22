@@ -38,7 +38,6 @@ trait ControllerHelper
             ->serialize($data, 'json', $context);
     }
 
-
     /**
      * Data deserializing via JMS serializer.
      *
