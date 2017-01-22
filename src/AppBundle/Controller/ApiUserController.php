@@ -98,7 +98,7 @@ class ApiUserController extends BaseController
         $numbers = [];
 
         $allForms = new AllForms();
-        $allForms->setUser($this->getUser()->id);
+        $allForms->setUser($this->getUser());
         //$logger->info($allForms->getUser());
         foreach ($data as $key=>$value) {
             $logger->info($value);
