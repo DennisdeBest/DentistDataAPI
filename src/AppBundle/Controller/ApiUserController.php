@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\AllForms;
 use FOS\UserBundle\Controller\RegistrationController as BaseController;
 use JMS\Serializer\Serializer;
 use Lexik\Bundle\JWTAuthenticationBundle\Exception\ExpiredTokenException;
@@ -95,6 +96,10 @@ class ApiUserController extends BaseController
         //return new Response($data[0], '409');
         $logger->info($data);
         $numbers = [];
+
+        $allForms = new AllForms();
+        $allForms->setUser($this->getUser()->id);
+        $logger->info($allForms);
         foreach ($data as $key=>$value) {
             $logger->info($value);
             if (preg_match_all('/\d+/', $key, $matches)) {

@@ -5,62 +5,62 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
-* Form
-*
-* @ORM\Table(name="form0")
-* @ORM\Entity(repositoryClass="AppBundle\Repository\FormRepository")
-*/
+ * Form
+ *
+ * @ORM\Table(name="form0")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\FormRepository")
+ */
 class Form0
 {
-/**
-* @var int
-*
-* @ORM\Column(name="id", type="integer")
-* @ORM\Id
-* @ORM\GeneratedValue(strategy="AUTO")
-*/
-private $id;
-/**
-* @var string
-*
-* @ORM\Column(name="Text0ID", type="string", length=255, nullable=true)
-*/
-private $Text0ID;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Text0ID", type="string", length=255, nullable=true)
+     */
+    private $Text0ID;
 
-/**
-* @var string
-*
-* @ORM\Column(name="Select0Sexe", type="string", length=255, nullable=true)
-*/
-private $Select0Sexe;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Select0Sexe", type="string", length=255, nullable=true)
+     */
+    private $Select0Sexe;
 
-/**
-* @var string
-*
-* @ORM\Column(name="Text0Profession", type="string", length=255, nullable=true)
-*/
-private $Text0Profession;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Text0Profession", type="string", length=255, nullable=true)
+     */
+    private $Text0Profession;
 
-/**
-* @var string
-*
-* @ORM\Column(name="Date0DateNaissance", type="string", length=255, nullable=true)
-*/
-private $Date0DateNaissance;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Date0DateNaissance", type="string", length=255, nullable=true)
+     */
+    private $Date0DateNaissance;
 
-/**
-* @var string
-*
-* @ORM\Column(name="Date0DateConsult", type="string", length=255, nullable=true)
-*/
-private $Date0DateConsult;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Date0DateConsult", type="string", length=255, nullable=true)
+     */
+    private $Date0DateConsult;
 
-/**
-* @var string
-*
-* @ORM\Column(name="Textarea0BilanSante", type="string", length=255, nullable=true)
-*/
-private $Textarea0BilanSante;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="Textarea0BilanSante", type="string", length=255, nullable=true)
+     */
+    private $Textarea0BilanSante;
 
 
     /**
@@ -74,7 +74,7 @@ private $Textarea0BilanSante;
     }
 
     /**
-     * Set text0ID
+     * Set text0ID&
      *
      * @param string $text0ID
      *
