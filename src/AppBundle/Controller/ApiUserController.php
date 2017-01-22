@@ -119,6 +119,73 @@ class ApiUserController extends BaseController
                         case "1":
                             $entity = new Form1();
                             break;
+                        case "2":
+                            $entity = new Form2();
+                            break;
+                        case "3":
+                            $entity = new Form3();
+                            break;
+                        case "4":
+                            $entity = new Form4();
+                            break;
+                        case "5":
+                            $entity = new Form5();
+                            break;
+                        case "6":
+                            $entity = new Form6();
+                            break;
+                        case "7":
+                            $entity = new Form7();
+                            break;
+                        case "8":
+                            $entity = new Form8();
+                            break;
+                        case "9":
+                            $entity = new Form9();
+                            break;
+                        case "10":
+                            $entity = new Form10();
+                            break;
+                        case "11":
+                            $entity = new Form11();
+                            break;
+                        case "12":
+                            $entity = new Form12();
+                            break;
+                        case "13":
+                            $entity = new Form13();
+                            break;
+                        case "14":
+                            $entity = new Form14();
+                            break;
+                        case "15":
+                            $entity = new Form15();
+                            break;
+                        case "16":
+                            $entity = new Form16();
+                            break;
+                        case "17":
+                            $entity = new Form17();
+                            break;
+                        case "18":
+                            $entity = new Form18();
+                            break;
+                        case "19":
+                            $entity = new Form19();
+                            break;
+                        case "20":
+                            $entity = new Form20();
+                            break;
+                        case "21":
+                            $entity = new Form21();
+                            break;
+                        case "22":
+                            $entity = new Form22();
+                            break;
+                        case "23":
+                            $entity = new Form23();
+                            break;
+                         
                         default:
                             $entity = new Form0();
                     }
