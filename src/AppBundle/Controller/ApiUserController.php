@@ -127,6 +127,9 @@ class ApiUserController extends BaseController
                 if($newNumber == $number){
                     $logger->info($number." ".$key." ".$value);
                     $entity->get.$key->$value;
+                    $logger->info("*******ENTITY*******");
+
+                    $logger->info($entity);
                 }
             }
         }
