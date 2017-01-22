@@ -68,7 +68,7 @@ class ApiUserController extends BaseController
         //$logger->info($this->deserialize($request->getContent(), Form0::class));
         $data = json_decode($request->getContent());
         $logger->info("JSON decooded");
-        $logger->info($data);
+        //$logger->info($data);
         $numbers = [];
         foreach ($data as $item) {
             $logger->info($item);
