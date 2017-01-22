@@ -68,10 +68,10 @@ class ApiUserController extends BaseController
         //$logger->info($this->deserialize($request->getContent(), Form0::class));
         $data = json_decode($request->getContent());
         $logger->info("JSON decooded");
-        return new Response($data[0], '409');
+        //return new Response($data[0], '409');
         //$logger->info($data);
         $numbers = [];
-        foreach ($data as $item) {
+        foreach ($data[0] as $item) {
             $logger->info($item);
             if (preg_match_all('/\d+/', $item, $matches)) {
                 $number = $matches[0][0];
