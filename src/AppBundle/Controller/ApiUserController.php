@@ -126,7 +126,7 @@ class ApiUserController extends BaseController
                 }
                 while($newNumber == $number){
                     $logger->info($number." ".$key." ".$value);
-                    $entity->get.$key->$value;
+                    //$entity->get.$key->$value;
                 }
             }
         }
