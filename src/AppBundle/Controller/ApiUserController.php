@@ -98,7 +98,7 @@ class ApiUserController extends BaseController
         $numbers = [];
 
         $allForms = new AllForms();
-        //$allForms->setUser($this->getUser()->id);
+        $allForms->setUser($this->getUser()->id);
         //$logger->info($allForms->getUser());
         foreach ($data as $key=>$value) {
             $logger->info($value);
@@ -198,10 +198,10 @@ class ApiUserController extends BaseController
                     $logger->info("*******ENTITY*******");
                     $logger->info($entity->$get());
                     $this->getDoctrine()->getManager()->persist($entity);
+                    $formnumber = "setForm".$number;
+                    $allForms->$formnumber($entity);
+                    $this->getDoctrine()->getManager()->persist($allForms);
                     $this->getDoctrine()->getManager()->flush();
-                } else {
-
-
                 }
             }
         }
