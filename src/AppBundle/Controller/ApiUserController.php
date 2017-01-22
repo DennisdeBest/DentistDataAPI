@@ -113,12 +113,14 @@ class ApiUserController extends BaseController
                     $logger->info($entity);
                     //$entityObjects = new $entity();
                     switch ($number){
-                        case 0:
+                        case "0":
                             $entity = new Form0();
                             break;
-                        case 1:
+                        case "1":
                             $entity = new Form1();
                             break;
+                        default:
+                            $entity = new Form0();
                     }
                     $form1 = new Form1();
                 }
