@@ -103,7 +103,8 @@ class ApiUserController extends BaseController
                 if(!in_array($number, $numbers)){
                     $numbers[]= $number;
                     $entity = "Form".$number;
-                    //$entityObjects = new $entity();
+                    $logger->info($entity);
+                    $entityObjects = new $entity();
                     $form1 = new Form1();
                 }
             }
