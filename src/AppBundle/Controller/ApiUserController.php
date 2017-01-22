@@ -109,9 +109,9 @@ class ApiUserController extends BaseController
                 if(!in_array($number, $numbers)){
                     $newNumber = $number;
                     $numbers[]= $number;
-                    $entity = "Form".$number;
-                    $logger->info($entity);
-                    $entityObjects = new $entity();
+                    //$entity = "Form".$number;
+                    //$logger->info($entity);
+                    //$entityObjects = new $entity();
                     switch ($number){
                         case "0":
                             $entity = new Form0();
@@ -185,9 +185,8 @@ class ApiUserController extends BaseController
                         case "23":
                             $entity = new Form23();
                             break;
-                         
                         default:
-                            $entity = new Form0();
+                            $entity = "rien";
                     }
                 }
                 $logger->info($number." ".$newNumber." ".$value);
@@ -195,7 +194,7 @@ class ApiUserController extends BaseController
                     $logger->info($number." ".$key." ".$value);
                     $set = "set".$key;
                     $get = "get".$key;
-                    $entityObjects->$set($value);
+                    $entity->$set($value);
                     $logger->info("*******ENTITY*******");
                     $logger->info($entity->$get());
                 }
