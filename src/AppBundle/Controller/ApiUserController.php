@@ -197,9 +197,10 @@ class ApiUserController extends BaseController
                     $entity->$set($value);
                     $logger->info("*******ENTITY*******");
                     $logger->info($entity->$get());
-                } else {
                     $this->getDoctrine()->getManager()->persist($entity);
                     $this->getDoctrine()->getManager()->flush();
+                } else {
+
 
                 }
             }
