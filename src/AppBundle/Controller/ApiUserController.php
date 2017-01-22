@@ -122,8 +122,8 @@ class ApiUserController extends BaseController
                         default:
                             $entity = new Form0();
                     }
-                    $form1 = new Form1();
                 }
+                $logger->info($number." ".$newNumber." ".$value);
                 if($newNumber == $number){
                     $logger->info($number." ".$key." ".$value);
                     //$entity->get.$key->$value;
