@@ -111,7 +111,7 @@ class ApiUserController extends BaseController
                     $numbers[]= $number;
                     $entity = "Form".$number;
                     $logger->info($entity);
-                    //$entityObjects = new $entity();
+                    $entityObjects = new $entity();
                     switch ($number){
                         case "0":
                             $entity = new Form0();
@@ -128,7 +128,7 @@ class ApiUserController extends BaseController
                     $logger->info($number." ".$key." ".$value);
                     $set = "set".$key;
                     $get = "get".$key;
-                    $entity->$set($value);
+                    $entityObjects->$set($value);
                     $logger->info("*******ENTITY*******");
                     $logger->info($entity->$get());
                 }
