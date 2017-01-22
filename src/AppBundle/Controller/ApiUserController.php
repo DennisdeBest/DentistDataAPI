@@ -97,29 +97,8 @@ class ApiUserController extends BaseController
         $logger->info($data);
         $numbers = [];
 
-        $allForms = new AllForms();
-        //$allForms->setUser($this->getUser()->id);
-        //$logger->info($allForms->getUser());
-        foreach ($data as $key=>$value) {
-            $logger->info($value);
-            if (preg_match_all('/\d+/', $key, $matches)) {
-                $number = $matches[0][0];
-                $logger->info($number);
-                $newNumber = 0;
-                if(!in_array($number, $numbers)){
-                    $newNumber = $number;
-                    $numbers[]= $number;
-                    $entity = "Form".$number;
-                    $logger->info($entity);
-                    //$entityObjects = new $entity();
-                    $form1 = new Form1();
-                }
-                while($newNumber == $number){
-                    $logger->info($number." ".$key." ".$value);
-                    //$entity->get.$key->$value;
-                }
-            }
-        }
+
+
     }
 
     public function jsonToArray($json){
