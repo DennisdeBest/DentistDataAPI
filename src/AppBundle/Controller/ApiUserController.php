@@ -1,13 +1,37 @@
 <?php
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Form0;
 use FOS\UserBundle\Controller\RegistrationController as BaseController;
 use JMS\Serializer\Serializer;
 use Lexik\Bundle\JWTAuthenticationBundle\Exception\ExpiredTokenException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Monolog\Logger;
+use AppBundle\Entity\Form0;
+use AppBundle\Entity\Form1;
+use AppBundle\Entity\Form2;
+use AppBundle\Entity\Form3;
+use AppBundle\Entity\Form4;
+use AppBundle\Entity\Form5;
+use AppBundle\Entity\Form6;
+use AppBundle\Entity\Form7;
+use AppBundle\Entity\Form8;
+use AppBundle\Entity\Form9;
+use AppBundle\Entity\Form10;
+use AppBundle\Entity\Form11;
+use AppBundle\Entity\Form12;
+use AppBundle\Entity\Form13;
+use AppBundle\Entity\Form14;
+use AppBundle\Entity\Form15;
+use AppBundle\Entity\Form16;
+use AppBundle\Entity\Form17;
+use AppBundle\Entity\Form18;
+use AppBundle\Entity\Form19;
+use AppBundle\Entity\Form20;
+use AppBundle\Entity\Form21;
+use AppBundle\Entity\Form22;
+use AppBundle\Entity\Form23;
+
 
 class ApiUserController extends BaseController
 {
@@ -80,6 +104,7 @@ class ApiUserController extends BaseController
                     $numbers[]= $number;
                     $entity = "Form".$number;
                     $entityObjects = new $entity();
+                    $form1 = new Form1();
                 }
             }
         }
