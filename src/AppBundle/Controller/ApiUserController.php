@@ -128,9 +128,8 @@ class ApiUserController extends BaseController
                     $logger->info($number." ".$key." ".$value);
                     $set = "set".$key;
                     $get = "get".$key;
-                    $entity->$set()->$value;
+                    $entity->$set($value);
                     $logger->info("*******ENTITY*******");
-
                     $logger->info($entity->$get());
                 }
             }
