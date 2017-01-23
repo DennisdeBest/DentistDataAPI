@@ -13,7 +13,7 @@ class AuthenticationController extends BaseController
 
 
     /**
-     * @Security("is_granted('ROLE_USER') or has_role('IS_AUTHENTICATED_ANONYMOUSLY')")
+     * @Security("is_granted('ROLE_USER') or has_role('ROLE_CUSTOMER')")
      * @param Request $request
      * @return Response
      */
