@@ -35,5 +35,5 @@ forms:
 
 getForms:
     path: /getForms
-    methods: [POST]
+    methods: [GET]
     defaults: {_controller: AppBundle:ApiUser:getForms}
