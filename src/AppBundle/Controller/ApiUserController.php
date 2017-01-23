@@ -228,5 +228,6 @@ class ApiUserController extends BaseController
         $logger = $this->get('logger');
         $logger->info("get form logger");
         $logger->info($result);
+        return new Response($this->serialize($result), 200);
     }
 }
