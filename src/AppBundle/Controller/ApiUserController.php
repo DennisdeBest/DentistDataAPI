@@ -104,7 +104,7 @@ class ApiUserController extends BaseController
         $allForms = new AllForms();
 
         $user = $this->getUser();
-        $logger->info("USER BITE");
+        $logger->info("USER");
         $logger->info($user);
         $allForms->setUser($user);
         //$logger->info($allForms->getUser());
@@ -213,5 +213,20 @@ class ApiUserController extends BaseController
                 }
             }
         }
+
+        return new Response("Form saved", 200);
+    }
+
+    /**
+     * @Security("is_granted('ROLE_USER')")
+     */
+    public function getFormsAction(Request $request){
+        $user = $this->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $repo = $em->getRepository('AppBundle:AllForms');
+        $result = $repo->findAll();
+        $logger = $this->get('logger');
+        $logger->info("get form logger");
+        $logger->info($result);
     }
 }

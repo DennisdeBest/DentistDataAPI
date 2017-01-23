@@ -32,3 +32,8 @@ forms:
     path: /form
     methods: [POST]
     defaults: { _controller: AppBundle:ApiUser:saveForm}
+
+getForms:
+    path: /getForms
+    methods: [POST]
+    defaults: {_controller: AppBundle:ApiUser:getForms}
