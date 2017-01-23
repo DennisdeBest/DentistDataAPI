@@ -13,7 +13,7 @@ class AuthenticationController extends BaseController
 
 
     /**
-     * @Security("is_granted('ROLE_USER')")
+     * @Security("is_granted('ROLE_USER') or has_role('IS_AUTHENTICATED_ANONYMOUSLY')")
      * @param Request $request
      * @return Response
      */
@@ -34,7 +34,6 @@ class AuthenticationController extends BaseController
         $repo = $this->getDoctrine()->getRepository('AppBundle:User');
         $users = $repo->findAll();
         $response = new Response($this->serialize($users), Response::HTTP_OK);
-
         return $this->setBaseHeaders($response);
     }
 
