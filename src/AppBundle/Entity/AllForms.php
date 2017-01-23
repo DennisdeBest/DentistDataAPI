@@ -163,7 +163,7 @@ class AllForms
     /**
      * Set user
      *
-     * @param \AppBundle\Entity\AppBundle/Entity/User $user
+     * @param \AppBundle\Entity\User $user
      *
      * @return AllForms
      */
@@ -177,7 +177,7 @@ class AllForms
     /**
      * Get user
      *
-     * @return \AppBundle\Entity\AppBundle/Entity/User
+     * @return \AppBundle\Entity\User $user
      */
     public function getUser()
     {

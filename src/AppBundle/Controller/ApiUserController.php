@@ -106,7 +106,7 @@ class ApiUserController extends BaseController
         $user = $this->getUser();
         $logger->info("USER BITE");
         $logger->info($user);
-        $allForms->setUser($user->getId());
+        $allForms->setUser($user);
         //$logger->info($allForms->getUser());
         foreach ($data as $key=>$value) {
             $logger->info($value);
